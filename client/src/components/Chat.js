@@ -1,40 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
+import Conversation from "./Conversation";
+import Input from "./Input";
 
 const Chat = () => {
   const navigate = useNavigate();
 
-  async function populateQuote() {
-    const req = await fetch("http://localhost:5000/api/quote", {
-      headers: {
-        "x-access-token": localStorage.getItem("token")
-      }
-    });
-
-    const data = req.json();
-    console.log(data);
-  }
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (token) {
       const user = jwt.decode(token);
-      console.log(user);
 
       if (!user) {
         localStorage.removeItem("token");
-        navigate("/chat");
+        navigate("/login");
       } else {
-        populateQuote();
+        setName(user.name);
       }
     }
   }, []);
 
+  console.log(name);
+
   return (
-    <div>
-      <h2>Welcome to Chat</h2>
+    <div className="chat-container">
+      <Conversation />
+      <Input message={message} setMessage={setMessage} />
     </div>
   );
 };
