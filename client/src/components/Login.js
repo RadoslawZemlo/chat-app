@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,8 +22,15 @@ const Login = () => {
     });
 
     const data = await res.json();
-
     console.log(data);
+
+    if (data.user) {
+      alert("Login successful");
+      // window.location.href("./chat");
+      navigate("/chat");
+    } else {
+      alert("Please chceck your username and password");
+    }
   }
 
   return (

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Chat from "./components/Chat";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/chat" exact element={<Chat />} />
         </Routes>
       </Router>
     </div>
