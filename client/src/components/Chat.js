@@ -6,7 +6,7 @@ const Chat = () => {
   const navigate = useNavigate();
 
   async function populateQuote() {
-    const req = await fetch("http;//localhost:5000/api/quote", {
+    const req = await fetch("http://localhost:5000/api/quote", {
       headers: {
         "x-access-token": localStorage.getItem("token")
       }
@@ -34,7 +34,7 @@ const Chat = () => {
 
   return (
     <div>
-      <h2>Welcome on Chat</h2>
+      <h2>Welcome to Chat</h2>
     </div>
   );
 };
