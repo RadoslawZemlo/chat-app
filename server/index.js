@@ -46,6 +46,39 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.get("/api/message", async (req, res) => {
+  const token = req.headers["x-access-token"];
+
+  try {
+    const decoded = jwt.verify(token, "casablanca21");
+    const name = decoded.name;
+    const user = await User.findOne({ name: name });
+
+    return res.json({ status: "ok", message: user.message });
+  } catch (err) {
+    console.log(error);
+    res.json({ status: "error", error: "Invalid token" });
+  }
+});
+
+app.post("/api/message", async (req, res) => {
+  const token = req.headers["x-access-token"];
+
+  try {
+    const decoded = jwt.verify(token, "casablanca21");
+    const name = decoded.name;
+    await User.updateOne(
+      { name: name },
+      { $set: { message: req.body.message } }
+    );
+
+    return res.json({ status: "ok" });
+  } catch (err) {
+    console.log(error);
+    res.json({ status: "error", error: "Invalid token" });
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
