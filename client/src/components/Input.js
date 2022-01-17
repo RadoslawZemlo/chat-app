@@ -1,74 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import jwt from "jsonwebtoken";
+import React, { useState } from "react";
 
-// const Input = ({ message, setMessage }) => {
-const Input = () => {
-  const navigate = useNavigate();
-
+const Input = ({ sender }) => {
   const [message, setMessage] = useState("");
-  const [newMessage, setNewMessage] = useState("");
-
-  const displayMessage = async () => {
-    const req = await fetch("http://localhost:5000/api/message", {
-      headers: {
-        "x-access-token": localStorage.getItem("token")
-      }
-    });
-
-    const data = await req.json();
-    if (data.status === "ok") {
-      setMessage(data.messege);
-    } else {
-      alert(data.error);
-    }
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const user = jwt.decode(token);
-      if (!user) {
-        localStorage.removeItem("token");
-        navigate("/login");
-      } else {
-        displayMessage();
-      }
-    }
-  }, []);
 
   const sendMessage = async e => {
     e.preventDefault();
 
-    const req = await fetch("http://localhost:5000/api/message", {
+    const res = await fetch("http://localhost:5000/api/messages", {
       method: "POST",
       headers: {
-        "Content-Type": "appliation/json",
-        "x-access-token": localStorage.getItem("token")
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        message: newMessage
+        sender,
+        message
       })
     });
 
-    const data = await req.json();
+    const data = await res.json();
 
     if (data.status === "ok") {
-      console.log(newMessage);
-      setMessage(newMessage);
-      setNewMessage("");
+      console.log(message);
+      setMessage("");
     } else {
-      alert(data.error);
+      console.log(data.error);
     }
   };
 
   return (
     <div className="message-input">
-      <p>Message: {message || "No messages"}</p>
       <form onSubmit={sendMessage}>
         <input
-          value={newMessage}
-          onChange={e => setNewMessage(e.target.value)}
+          value={message}
+          onChange={e => setMessage(e.target.value)}
           type="text"
           placeholder="Type a message..."
         />
