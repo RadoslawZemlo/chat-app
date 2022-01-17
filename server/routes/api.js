@@ -2,6 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user.model");
+const Message = require("../models/message.model");
 
 const router = express.Router();
 
@@ -37,6 +38,31 @@ router.post("/login", async (req, res) => {
     return res.json({ status: "ok", user: token });
   } else {
     return res.json({ status: "error", user: false });
+  }
+});
+
+router.get("/messages", async (req, res, next) => {
+  try {
+    const messages = await Message.find({});
+
+    res.json(messages);
+  } catch (next) {
+    console.log(next);
+  }
+});
+
+router.post("/messages", async (req, res, next) => {
+  console.log(req.body);
+
+  try {
+    await Message.create({
+      sender: req.body.sender,
+      message: req.body.message
+    });
+
+    res.json({ status: "ok" });
+  } catch (err) {
+    res.json({ status: "error", error: "error" });
   }
 });
 
