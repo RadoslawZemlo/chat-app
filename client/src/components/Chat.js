@@ -7,6 +7,7 @@ import Input from "./Input";
 const Chat = () => {
   const navigate = useNavigate();
 
+  const [messages, setMessages] = useState([]);
   const [sender, setSender] = useState("");
 
   useEffect(() => {
@@ -24,11 +25,26 @@ const Chat = () => {
     }
   }, []);
 
+  useEffect(() => {
+    getMessages();
+  });
+
+  const getMessages = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/messages");
+      const data = await res.json();
+
+      setMessages(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="outer-container">
       <h2>Global Chat</h2>
       <div className="chat-container">
-        <Conversation />
+        <Conversation messages={messages} />
         <Input sender={sender} />
       </div>
     </div>

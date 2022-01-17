@@ -1,9 +1,15 @@
 import React from "react";
 
-const Conversation = () => {
+const Conversation = ({ messages }) => {
   return (
     <div className="conversation-container">
-      <h2>Conversation</h2>
+      {messages.map((message, index) => (
+        <div key={index} className="message-container">
+          <p>
+            {message.sender}: {message.message}
+          </p>
+        </div>
+      ))}
     </div>
   );
 };
