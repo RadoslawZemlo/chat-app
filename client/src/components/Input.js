@@ -20,7 +20,6 @@ const Input = ({ sender }) => {
     const data = await res.json();
 
     if (data.status === "ok") {
-      console.log(message);
       setMessage("");
     } else {
       console.log(data.error);

@@ -41,13 +41,23 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/messages", async (req, res, next) => {
+router.get("/users", async (req, res) => {
+  try {
+    const users = await User.find({});
+
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/messages", async (req, res) => {
   try {
     const messages = await Message.find({});
 
     res.json(messages);
-  } catch (next) {
-    console.log(next);
+  } catch (err) {
+    console.log(err);
   }
 });
 

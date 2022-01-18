@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import Conversation from "./Conversation";
 import Input from "./Input";
+import Users from "./Users";
 
 const Chat = () => {
   const navigate = useNavigate();
 
+  const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [sender, setSender] = useState("");
 
@@ -26,8 +28,23 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
+    getUsers();
+  }, [users]);
+
+  useEffect(() => {
     getMessages();
-  });
+  }, [messages]);
+
+  const getUsers = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/users");
+      const data = await res.json();
+
+      setUsers(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getMessages = async () => {
     try {
@@ -46,6 +63,9 @@ const Chat = () => {
       <div className="chat-container">
         <Conversation messages={messages} />
         <Input sender={sender} />
+      </div>
+      <div className="users-container">
+        <Users users={users} />
       </div>
     </div>
   );
