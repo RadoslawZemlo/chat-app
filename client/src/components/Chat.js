@@ -29,11 +29,8 @@ const Chat = () => {
 
   useEffect(() => {
     getUsers();
-  }, [users]);
-
-  useEffect(() => {
     getMessages();
-  }, [messages]);
+  }, []);
 
   const getUsers = async () => {
     try {
@@ -62,7 +59,7 @@ const Chat = () => {
       <h2>Global Chat</h2>
       <div className="chat-container">
         <Conversation messages={messages} />
-        <Input sender={sender} />
+        <Input sender={sender} getMessages={getMessages} />
       </div>
       <div className="users-container">
         <Users users={users} />
