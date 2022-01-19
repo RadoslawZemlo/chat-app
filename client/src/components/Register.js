@@ -30,7 +30,7 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <div className="regster-container">
       <h2>Register</h2>
       <form onSubmit={registerUser}>
         <input

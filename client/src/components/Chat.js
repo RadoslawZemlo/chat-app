@@ -29,7 +29,7 @@ const Chat = () => {
       <Header user={user} />
       <div className="chat-container">
         <Topbar />
-        <Conversation />
+        <Conversation user={user} />
         <Input user={user} />
       </div>
     </>

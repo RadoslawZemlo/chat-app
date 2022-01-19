@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const Conversation = () => {
+const Conversation = ({ user }) => {
   const [messages, setMessages] = useState([]);
+  const last = useRef(null);
+
+  const scrollToBottom = () => {
+    last.current.scrollIntoView(false);
+  };
 
   useEffect(() => {
     getMessages();
@@ -9,6 +14,10 @@ const Conversation = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const getMessages = async () => {
     try {
@@ -24,12 +33,25 @@ const Conversation = () => {
   return (
     <div className="conversation-container">
       {messages.map((message, index) => (
-        <div key={index} className="message-container">
-          <p>
-            {message.sender}: {message.message}
-          </p>
+        <div
+          key={index}
+          className={
+            message.sender === user
+              ? "message-container message-sended"
+              : "message-container"
+          }
+        >
+          {message.sender === user ? (
+            <p>{message.message}</p>
+          ) : (
+            <>
+              <p className="user-name">{message.sender}</p>
+              <p>{message.message}</p>
+            </>
+          )}
         </div>
       ))}
+      <div ref={last} className="last"></div>
     </div>
   );
 };
