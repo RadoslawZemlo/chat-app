@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Input = ({ user, getMessages }) => {
+const Input = ({ user }) => {
   const [message, setMessage] = useState("");
 
   const sendMessage = async e => {
@@ -21,7 +21,6 @@ const Input = ({ user, getMessages }) => {
 
     if (data.status === "ok") {
       setMessage("");
-      getMessages();
     } else {
       console.log(data.error);
     }

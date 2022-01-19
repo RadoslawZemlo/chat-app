@@ -11,7 +11,6 @@ const Chat = () => {
   const { user } = state;
 
   const [users, setUsers] = useState([]);
-  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,7 +27,6 @@ const Chat = () => {
 
   useEffect(() => {
     getUsers();
-    getMessages();
   }, []);
 
   const getUsers = async () => {
@@ -42,24 +40,13 @@ const Chat = () => {
     }
   };
 
-  const getMessages = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/messages");
-      const data = await res.json();
-
-      setMessages(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className="outer-container">
       <h2>Global Chat</h2>
       <p>{user}</p>
       <div className="chat-container">
-        <Conversation messages={messages} />
-        <Input user={user} getMessages={getMessages} />
+        <Conversation />
+        <Input user={user} />
       </div>
       <div className="users-container">
         <Users users={users} />
