@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Users = () => {
+const Users = ({ toggle }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Users = () => {
   };
 
   return (
-    <div className="users-container">
+    <div className={toggle ? "users-container active" : "users-container"}>
       <ul>
         {users.map((user, index) => (
           <li key={index}>{user.name}</li>

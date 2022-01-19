@@ -60,8 +60,6 @@ router.get("/messages", async (req, res) => {
 });
 
 router.post("/messages", async (req, res, next) => {
-  console.log(req.body);
-
   try {
     await Message.create({
       sender: req.body.user,

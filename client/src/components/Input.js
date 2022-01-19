@@ -35,7 +35,7 @@ const Input = ({ user }) => {
           type="text"
           placeholder="Type a message..."
         />
-        <input type="submit" value="Send message" />
+        <input type="submit" value="Send" />
       </form>
     </div>
   );
