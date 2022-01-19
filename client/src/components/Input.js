@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Input = ({ sender, getMessages }) => {
+const Input = ({ user, getMessages }) => {
   const [message, setMessage] = useState("");
 
   const sendMessage = async e => {
@@ -12,7 +12,7 @@ const Input = ({ sender, getMessages }) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        sender,
+        user,
         message
       })
     });

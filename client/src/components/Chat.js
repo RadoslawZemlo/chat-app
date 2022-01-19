@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import Conversation from "./Conversation";
 import Input from "./Input";
@@ -7,22 +7,21 @@ import Users from "./Users";
 
 const Chat = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { user } = state;
 
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [sender, setSender] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const user = jwt.decode(token);
+      const userToken = jwt.decode(token);
 
-      if (!user) {
+      if (!userToken) {
         localStorage.removeItem("token");
         navigate("/login");
-      } else {
-        setSender(user.name);
       }
     }
   }, []);
@@ -57,9 +56,10 @@ const Chat = () => {
   return (
     <div className="outer-container">
       <h2>Global Chat</h2>
+      <p>{user}</p>
       <div className="chat-container">
         <Conversation messages={messages} />
-        <Input sender={sender} getMessages={getMessages} />
+        <Input user={user} getMessages={getMessages} />
       </div>
       <div className="users-container">
         <Users users={users} />

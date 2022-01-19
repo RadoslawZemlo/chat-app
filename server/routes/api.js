@@ -66,7 +66,7 @@ router.post("/messages", async (req, res, next) => {
 
   try {
     await Message.create({
-      sender: req.body.sender,
+      sender: req.body.user,
       message: req.body.message
     });
 
