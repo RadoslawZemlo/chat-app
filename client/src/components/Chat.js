@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import Conversation from "./Conversation";
@@ -9,8 +9,6 @@ const Chat = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { user } = state;
-
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -25,21 +23,6 @@ const Chat = () => {
     }
   }, []);
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  const getUsers = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/users");
-      const data = await res.json();
-
-      setUsers(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className="outer-container">
       <h2>Global Chat</h2>
@@ -48,9 +31,7 @@ const Chat = () => {
         <Conversation />
         <Input user={user} />
       </div>
-      <div className="users-container">
-        <Users users={users} />
-      </div>
+      <Users />
     </div>
   );
 };
