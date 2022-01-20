@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,24 +35,27 @@ const Login = () => {
   }
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={loginUser}>
-        <input
-          value={name}
-          onChange={e => setName(e.target.value)}
-          type="text"
-          placeholder="username"
-        />
-        <input
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          type="password"
-          placeholder="password"
-        />
-        <input type="submit" value="Login" />
-      </form>
-    </div>
+    <>
+      <Header />
+      <div className="auth-container">
+        <h2>Login</h2>
+        <form onSubmit={loginUser}>
+          <input
+            value={name}
+            onChange={e => setName(e.target.value)}
+            type="text"
+            placeholder="username"
+          />
+          <input
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+            placeholder="password"
+          />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </>
   );
 };
 

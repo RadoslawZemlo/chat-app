@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
-import Header from "./Header";
-import Topbar from "./Topbar";
-import Conversation from "./Conversation";
-import Input from "./Input";
+import Header from "../Header/Header";
+import Topbar from "../Topbar/Topbar";
+import Conversation from "../Conversation/Conversation";
+import Input from "../Input/Input";
 
 const Chat = () => {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Input.css";
 
 const Input = ({ user }) => {
   const [message, setMessage] = useState("");
@@ -34,6 +35,7 @@ const Input = ({ user }) => {
           onChange={e => setMessage(e.target.value)}
           type="text"
           placeholder="Type a message..."
+          autoFocus
         />
         <input type="submit" value="Send" />
       </form>

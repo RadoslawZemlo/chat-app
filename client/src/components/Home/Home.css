@@ -1,0 +1,14 @@
+.home-container p {
+  line-height: 2.5rem;
+  margin: auto;
+  padding: 4rem;
+  text-align: center;
+}
+
+.home-container a {
+  background: #9ae4a7;
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}

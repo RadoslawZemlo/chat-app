@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Users.css";
 
 const Users = ({ toggle }) => {
   const [users, setUsers] = useState([]);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./Conversation.css";
 
 const Conversation = ({ user }) => {
   const [messages, setMessages] = useState([]);

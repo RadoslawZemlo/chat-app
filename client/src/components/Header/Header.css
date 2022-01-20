@@ -1,0 +1,16 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 0.5rem 0rem 1.1rem 0rem;
+  width: 90%;
+}
+
+.header p {
+  background: #9ae4a7;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
