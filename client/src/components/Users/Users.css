@@ -7,23 +7,23 @@
 }
 
 .toggle-container input {
-  background: #a5d2da;
+  background: #5d939c;
   border: none;
   border-left: 1px solid #000;
-  border-radius: 5px 0 0 5px;
+  border-radius: 0.5em 0.5em 0 0.5em;
   cursor: pointer;
   font-weight: bold;
   padding: 0.8rem 1.6rem 0.8rem 1.6rem;
 }
 
 .users-container {
-  background-color: #5d939c;
+  background-color: #466f77;
   border-left: 1px solid black;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   border-radius: 5px 0 0 5px;
   display: none;
-  height: 70.5vh;
+  height: 70.2vh;
   opacity: 0.95;
   position: absolute;
   top: 100%;

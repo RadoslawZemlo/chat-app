@@ -8,9 +8,10 @@
 }
 
 .header p {
-  background: #9ae4a7;
+  background: #83ca8f;
   border: 1px solid #000;
   border-radius: 1rem;
+  color: #000;
   font-weight: bold;
   padding: 0.5rem;
 }

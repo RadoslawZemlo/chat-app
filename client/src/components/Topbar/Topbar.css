@@ -1,5 +1,7 @@
 .topbar {
-  border-bottom: 2px solid #000;
+  background: #0f303a;
+  border-bottom: 1px solid #000;
+  border-radius: 0.4em 0.5em 0 0;
   display: flex;
   justify-content: space-between;
   text-align: center;

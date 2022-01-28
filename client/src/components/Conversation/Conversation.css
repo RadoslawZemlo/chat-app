@@ -4,9 +4,10 @@
 }
 
 .message-container {
-  background: #c0c2e5;
-  border: 1px solid black;
+  background: #67b8d8;
+  border: 1px solid #000;
   border-radius: 0.6rem 0.6rem 0.6rem 0;
+  color: #000;
   margin: 0.8rem;
   padding: 0.5rem;
   width: 65%;
@@ -14,11 +15,11 @@
 
 .message-sended {
   border-radius: 0.6rem 0.6rem 0 0.6rem;
-  background: #9ae4a7;
+  background: #83ca8f;
   margin-left: auto;
 }
 
 .user-name {
-  color: rgb(93, 93, 93);
+  color: #5d5d5d;
   font-size: 0.7rem;
 }
