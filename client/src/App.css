@@ -54,6 +54,12 @@ body {
   text-align: center;
 }
 
+.error {
+  color: #e04141;
+  font-weight: bold;
+  text-align: center;
+}
+
 .auth-container form {
   display: flex;
   flex-direction: column;
@@ -63,6 +69,7 @@ body {
 }
 
 .auth-container form > * {
+  background: #ddd;
   border: none;
   border-radius: 0.5rem;
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.8);
@@ -74,6 +81,19 @@ body {
 .auth-container form > :last-child {
   background: #83ca8f;
   font-weight: bold;
+}
+
+.auth-link {
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+.auth-link a {
+  background: #67b8d8;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+  padding: 0.5rem;
 }
 
 a {

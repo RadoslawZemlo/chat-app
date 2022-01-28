@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 
 const Login = () => {
@@ -7,6 +7,7 @@ const Login = () => {
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   async function loginUser(e) {
     e.preventDefault();
@@ -23,14 +24,12 @@ const Login = () => {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (data.user) {
       localStorage.setItem("token", data.user);
-      alert("Login successful");
       navigate("/chat", { state: { user: name } });
     } else {
-      alert("Please chceck your username and password");
+      setError(true);
     }
   }
 
@@ -39,6 +38,7 @@ const Login = () => {
       <Header />
       <div className="auth-container">
         <h2>Login</h2>
+        {error && <p className="error">Invalid username or password!</p>}
         <form onSubmit={loginUser}>
           <input
             value={name}
@@ -54,6 +54,9 @@ const Login = () => {
           />
           <input type="submit" value="Login" />
         </form>
+        <div className="auth-link">
+          <Link to="/register">Register</Link>
+        </div>
       </div>
     </>
   );

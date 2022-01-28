@@ -15,7 +15,11 @@ router.post("/register", async (req, res) => {
 
     res.json({ status: "ok" });
   } catch (err) {
-    res.json({ status: "error", error: "Duplicate Username" });
+    if (req.body.password === "") {
+      res.json({ status: "error", error: "No password" });
+    } else {
+      res.json({ status: "error", error: "Duplicate Username" });
+    }
   }
 });
 

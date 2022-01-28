@@ -22,8 +22,6 @@ const Input = ({ user }) => {
 
     if (data.status === "ok") {
       setMessage("");
-    } else {
-      console.log(data.error);
     }
   };
 

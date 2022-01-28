@@ -7,6 +7,10 @@
   width: 90%;
 }
 
+.header h1 {
+  color: #ddd;
+}
+
 .header p {
   background: #83ca8f;
   border: 1px solid #000;

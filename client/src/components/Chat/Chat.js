@@ -22,7 +22,7 @@ const Chat = () => {
         navigate("/login");
       }
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <>

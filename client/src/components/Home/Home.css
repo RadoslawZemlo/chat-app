@@ -6,9 +6,9 @@
 }
 
 .home-container a {
-  background: #83ca8f;
-  border: 1px solid #000;
+  background: #67b8d8;
   border-radius: 0.5rem;
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.8);
   font-weight: bold;
   padding: 0.5rem;
 }

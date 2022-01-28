@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
-import "./Register.css";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   async function registerUser(e) {
     e.preventDefault();
@@ -24,10 +24,15 @@ const Register = () => {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (data.status === "ok") {
       navigate("/login");
+    } else if (data.status === "error") {
+      if (data.error === "No password") {
+        setError("password");
+      } else if (data.error === "Duplicate Username") {
+        setError("username");
+      }
     }
   }
 
@@ -36,6 +41,10 @@ const Register = () => {
       <Header />
       <div className="auth-container">
         <h2>Register</h2>
+        {error === "password" && <p className="error">Password is empty!</p>}
+        {error === "username" && (
+          <p className="error">Username is already taken!</p>
+        )}
         <form onSubmit={registerUser}>
           <input
             value={name}
@@ -51,7 +60,7 @@ const Register = () => {
           />
           <input type="submit" value="Register" />
         </form>
-        <div className="login-link">
+        <div className="auth-link">
           <Link to="/login">Log in</Link>
         </div>
       </div>
