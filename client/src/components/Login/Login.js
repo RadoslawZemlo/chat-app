@@ -45,6 +45,7 @@ const Login = () => {
             onChange={e => setName(e.target.value)}
             type="text"
             placeholder="username"
+            autoFocus
           />
           <input
             value={password}

@@ -2,8 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const routes = require("./routes/api");
+const dotenv = require("dotenv");
 
-require("dotenv").config();
+dotenv.config();
 
 const URI = process.env.URI || "mongodb://localhost:27017/chat-app";
 const PORT = process.env.PORT || 5000;
