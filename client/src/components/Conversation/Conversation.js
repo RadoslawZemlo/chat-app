@@ -22,7 +22,7 @@ const Conversation = ({ user }) => {
 
   const getMessages = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/messages");
+      const res = await fetch("/api/messages");
       const data = await res.json();
 
       setMessages(data);
