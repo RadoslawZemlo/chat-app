@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
       {
         name: user.name
       },
-      "casablanca21"
+      process.env.JWT_SECRET
     );
 
     return res.json({ status: "ok", user: token });
