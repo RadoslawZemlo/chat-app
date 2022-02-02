@@ -4,11 +4,11 @@ Chat app built using MERN stack
 
 ## Table of Contents
 
-1. [General Info](#general-info)
-2. [Technologies](#technologies)
-3. [Screenshots](#screenshots)
-4. [Features](#features)
-5. [Installation](#installation)
+- [General Info](#general-info)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Features](#features)
+- [Installation](#installation)
 
 ## General Info
 
@@ -20,9 +20,9 @@ Check demo of the app deployed on heroku: https://chat-app-57.herokuapp.com/
 
 ### Screenshots
 
-<img width="350" alt="chat-app" src="https://user-images.githubusercontent.com/95445412/152177442-901a49c0-9f9b-402b-9257-4a014c4a7cab.png"> <img width="350" alt="chat-auth" src="https://user-images.githubusercontent.com/95445412/152177453-06af1391-958f-427d-b96f-c417f8fe7282.png">
+<img width="350" alt="chat-home" src="https://user-images.githubusercontent.com/95445412/152177458-e3d48041-a26a-484c-8950-2589fd0c8419.png"> <img width="350" alt="chat-auth" src="https://user-images.githubusercontent.com/95445412/152177453-06af1391-958f-427d-b96f-c417f8fe7282.png">
 <br/>
-<img width="350" alt="chat-home" src="https://user-images.githubusercontent.com/95445412/152177458-e3d48041-a26a-484c-8950-2589fd0c8419.png"> <img width="350" alt="chat-users" src="https://user-images.githubusercontent.com/95445412/152177460-36785387-6296-425a-b50d-a4a9a8159d2b.png">
+<img width="350" alt="chat-app" src="https://user-images.githubusercontent.com/95445412/152177442-901a49c0-9f9b-402b-9257-4a014c4a7cab.png"> <img width="350" alt="chat-users" src="https://user-images.githubusercontent.com/95445412/152177460-36785387-6296-425a-b50d-a4a9a8159d2b.png">
 
 ## Technologies
 
@@ -36,7 +36,7 @@ Check demo of the app deployed on heroku: https://chat-app-57.herokuapp.com/
 ## Features
 
 - Register and login users
-- Authentication using JWT Tokens
+- Users' authentication using JWT Tokens
 - Save and retrieve messages from MongoDB
 - A Global Chat where all users can messaging together
 
