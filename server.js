@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const URI = process.env.URI || "mongodb://localhost:27017/chat-app";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/chat-app";
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect(URI)
+  .connect(MONGO_URI)
   .then(() => console.log("Database connected successfully"))
   .catch(err => console.log(err));
 

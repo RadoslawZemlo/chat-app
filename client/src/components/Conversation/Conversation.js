@@ -11,7 +11,7 @@ const Conversation = ({ user }) => {
 
   useEffect(() => {
     getMessages();
-    const timer = setInterval(getMessages, 3000);
+    const timer = setInterval(getMessages, 2000);
 
     return () => clearInterval(timer);
   }, []);
