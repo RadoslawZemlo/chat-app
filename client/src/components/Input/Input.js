@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Input.css";
 
-const Input = ({ user }) => {
+const Input = ({ user, socket, messages, setMessages }) => {
   const [message, setMessage] = useState("");
 
   const sendMessage = async e => {
@@ -21,6 +21,8 @@ const Input = ({ user }) => {
     const data = await res.json();
 
     if (data.status === "ok") {
+      setMessages([...messages, { sender: user, message: message }]);
+      socket.emit("send-chat-message", message);
       setMessage("");
     }
   };

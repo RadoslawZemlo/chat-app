@@ -5,7 +5,6 @@ import { io } from "socket.io-client";
 import Header from "../Header/Header";
 import Topbar from "../Topbar/Topbar";
 import Conversation from "../Conversation/Conversation";
-import Input from "../Input/Input";
 
 const socket = io("http://localhost:5000");
 
@@ -27,13 +26,16 @@ const Chat = () => {
     }
   }, [navigate]);
 
+  useEffect(() => {
+    socket.emit("user-login", user);
+  }, [user]);
+
   return (
     <>
       <Header user={user} />
       <div className="chat-container">
         <Topbar />
-        <Conversation user={user} />
-        <Input user={user} />
+        <Conversation user={user} socket={socket} />
       </div>
     </>
   );

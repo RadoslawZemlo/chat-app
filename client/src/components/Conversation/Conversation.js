@@ -1,24 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
+import Input from "../Input/Input";
 import "./Conversation.css";
 
-const Conversation = ({ user }) => {
+const Conversation = ({ user, socket }) => {
   const [messages, setMessages] = useState([]);
   const last = useRef(null);
 
-  const scrollToBottom = () => {
-    last.current.scrollIntoView(false);
-  };
-
   useEffect(() => {
     getMessages();
-    const timer = setInterval(getMessages, 2000);
-
-    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  socket.on("chat-message", data => {
+    setMessages([...messages, { sender: data.sender, message: data.message }]);
+  });
 
   const getMessages = async () => {
     try {
@@ -31,29 +29,41 @@ const Conversation = ({ user }) => {
     }
   };
 
+  const scrollToBottom = () => {
+    last.current.scrollIntoView(false);
+  };
+
   return (
-    <div className="conversation-container">
-      {messages.map((message, index) => (
-        <div
-          key={index}
-          className={
-            message.sender === user
-              ? "message-container message-sended"
-              : "message-container"
-          }
-        >
-          {message.sender === user ? (
-            <p>{message.message}</p>
-          ) : (
-            <>
-              <p className="user-name">{message.sender}</p>
+    <>
+      <div className="conversation-container">
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={
+              message.sender === user
+                ? "message-container message-sended"
+                : "message-container"
+            }
+          >
+            {message.sender === user ? (
               <p>{message.message}</p>
-            </>
-          )}
-        </div>
-      ))}
-      <div ref={last} className="last"></div>
-    </div>
+            ) : (
+              <>
+                <p className="user-name">{message.sender}</p>
+                <p>{message.message}</p>
+              </>
+            )}
+          </div>
+        ))}
+        <div ref={last} className="last"></div>
+      </div>
+      <Input
+        user={user}
+        socket={socket}
+        messages={messages}
+        setMessages={setMessages}
+      />
+    </>
   );
 };
 

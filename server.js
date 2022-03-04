@@ -39,8 +39,21 @@ if ((process.env.NODE_ENV = "production")) {
   });
 }
 
+const onlineUsers = {};
+
 io.on("connection", socket => {
   console.log("Socket on!");
+
+  socket.on("user-login", user => {
+    onlineUsers[socket.id] = user;
+  });
+
+  socket.on("send-chat-message", message => {
+    socket.broadcast.emit("chat-message", {
+      sender: onlineUsers[socket.id],
+      message: message
+    });
+  });
 });
 
 httpServer.listen(PORT, () => {
