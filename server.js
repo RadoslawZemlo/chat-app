@@ -46,6 +46,8 @@ io.on("connection", socket => {
 
   socket.on("user-login", user => {
     onlineUsers[socket.id] = user;
+
+    socket.broadcast.emit("user-connected", user);
   });
 
   socket.on("send-chat-message", message => {
@@ -53,6 +55,11 @@ io.on("connection", socket => {
       sender: onlineUsers[socket.id],
       message: message
     });
+  });
+
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("user-disconnected", onlineUsers[socket.id]);
+    delete onlineUsers[socket.id];
   });
 });
 

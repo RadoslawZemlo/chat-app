@@ -19,6 +19,13 @@
   margin-left: auto;
 }
 
+.info {
+  color: #a3a3a3;
+  font-size: 0.7rem;
+  padding-bottom: 0.6rem;
+  text-align: center;
+}
+
 .user-name {
   color: #5d5d5d;
   font-size: 0.7rem;

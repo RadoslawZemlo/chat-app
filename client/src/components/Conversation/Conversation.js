@@ -14,8 +14,16 @@ const Conversation = ({ user, socket }) => {
     scrollToBottom();
   }, [messages]);
 
+  socket.on("user-connected", user => {
+    setMessages([...messages, { message: `${user} join` }]);
+  });
+
   socket.on("chat-message", data => {
     setMessages([...messages, { sender: data.sender, message: data.message }]);
+  });
+
+  socket.on("user-disconnected", user => {
+    setMessages([...messages, { message: `${user} has left` }]);
   });
 
   const getMessages = async () => {
@@ -39,11 +47,9 @@ const Conversation = ({ user, socket }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={
-              message.sender === user
-                ? "message-container message-sended"
-                : "message-container"
-            }
+            className={`${message.sender ? "message-container" : "info"} ${
+              message.sender === user ? "message-sended" : ""
+            }`}
           >
             {message.sender === user ? (
               <p>{message.message}</p>
