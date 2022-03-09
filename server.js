@@ -46,8 +46,9 @@ io.on("connection", socket => {
 
   socket.on("user-login", user => {
     onlineUsers[socket.id] = user;
-
     socket.broadcast.emit("user-connected", user);
+
+    io.emit("online-users", Object.values(onlineUsers));
   });
 
   socket.on("send-chat-message", message => {

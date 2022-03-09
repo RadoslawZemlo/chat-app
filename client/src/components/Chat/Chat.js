@@ -34,7 +34,7 @@ const Chat = () => {
     <>
       <Header user={user} />
       <div className="chat-container">
-        <Topbar />
+        <Topbar socket={socket} user={user} />
         <Conversation user={user} socket={socket} />
       </div>
     </>

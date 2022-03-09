@@ -46,8 +46,9 @@ router.post("/login", async (req, res) => {
 router.get("/users", async (req, res) => {
   try {
     const users = await User.find({});
+    const usersNames = users.map(({ name }) => name);
 
-    res.json(users);
+    res.json(usersNames);
   } catch (err) {
     console.log(err);
   }
