@@ -15,11 +15,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: "http://localhost:3000"
-  }
-});
+const io = new Server(httpServer);
 
 app.use(cors());
 app.use(express.json());
@@ -31,7 +27,7 @@ mongoose
 
 app.use("/api", routes);
 
-if ((process.env.NODE_ENV = "production")) {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", (req, res) => {
@@ -61,6 +57,8 @@ io.on("connection", socket => {
   socket.on("disconnect", () => {
     socket.broadcast.emit("user-disconnected", onlineUsers[socket.id]);
     delete onlineUsers[socket.id];
+
+    io.emit("online-users", Object.values(onlineUsers));
   });
 });
 

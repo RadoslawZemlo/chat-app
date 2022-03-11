@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Users from "../Users/Users";
 import "./Topbar.css";
 
-const Topbar = ({ socket, user }) => {
+const Topbar = ({ user, socket }) => {
   const [toggle, setToggle] = useState(false);
 
   const toggleUsers = () => setToggle(!toggle);
@@ -12,7 +12,7 @@ const Topbar = ({ socket, user }) => {
       <h2>Global Chat</h2>
       <div className="toggle-container">
         <input type="submit" name="users" value="users" onClick={toggleUsers} />
-        <Users socket={socket} user={user} toggle={toggle} />
+        <Users user={user} socket={socket} toggle={toggle} />
       </div>
     </div>
   );

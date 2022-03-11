@@ -14,17 +14,29 @@ const Conversation = ({ user, socket }) => {
     scrollToBottom();
   }, [messages]);
 
-  socket.on("user-connected", user => {
-    setMessages([...messages, { message: `${user} join` }]);
-  });
+  useEffect(() => {
+    const join = user =>
+      setMessages([...messages, { message: `${user} join` }]);
 
-  socket.on("chat-message", data => {
-    setMessages([...messages, { sender: data.sender, message: data.message }]);
-  });
+    const hasLeft = user =>
+      setMessages([...messages, { message: `${user} has left` }]);
 
-  socket.on("user-disconnected", user => {
-    setMessages([...messages, { message: `${user} has left` }]);
-  });
+    const message = data =>
+      setMessages([
+        ...messages,
+        { sender: data.sender, message: data.message }
+      ]);
+
+    socket.on("user-connected", join);
+    socket.on("chat-message", message);
+    socket.on("user-disconnected", hasLeft);
+
+    return () => {
+      socket.off("user-connected", join);
+      socket.off("chat-message", message);
+      socket.off("user-disconnected", hasLeft);
+    };
+  }, [socket, messages]);
 
   const getMessages = async () => {
     try {

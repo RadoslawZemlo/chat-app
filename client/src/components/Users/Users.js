@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Users.css";
 
-const Users = ({ socket, user, toggle }) => {
+const Users = ({ user, socket, toggle }) => {
   const [users, setUsers] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
@@ -9,9 +9,15 @@ const Users = ({ socket, user, toggle }) => {
     getUsers(user);
   }, [user]);
 
-  socket.on("online-users", users => {
-    setOnlineUsers(users);
-  });
+  useEffect(() => {
+    const getOnlineUsers = users => setOnlineUsers(users);
+
+    socket.on("online-users", getOnlineUsers);
+
+    return () => {
+      socket.off("online-users", getOnlineUsers);
+    };
+  }, [socket]);
 
   const getUsers = async user => {
     try {

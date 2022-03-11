@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Topbar from "../Topbar/Topbar";
 import Conversation from "../Conversation/Conversation";
 
-const socket = io("http://localhost:5000");
+const socket = io();
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Chat = () => {
     <>
       <Header user={user} />
       <div className="chat-container">
-        <Topbar socket={socket} user={user} />
+        <Topbar user={user} socket={socket} />
         <Conversation user={user} socket={socket} />
       </div>
     </>
